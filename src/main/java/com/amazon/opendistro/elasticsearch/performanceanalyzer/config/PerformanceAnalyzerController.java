@@ -183,7 +183,10 @@ public class PerformanceAnalyzerController {
                 paEnabledFromConf = paEnabledDefaultValue;
             }
 
-            updatePerformanceAnalyzerState(paEnabledFromConf);
+            this.paEnabled = paEnabledFromConf;
+            if (scheduledMetricCollectorsExecutor != null) {
+                scheduledMetricCollectorsExecutor.setEnabled(this.paEnabled);
+            }
         });
     }
 
